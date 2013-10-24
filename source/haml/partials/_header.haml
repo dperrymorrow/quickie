@@ -2,15 +2,14 @@
 %head
   %title Example app
   %link{href: "css/less_styles.css", rel: "stylesheet"}
-
 %body
   .container
     .masthead
       %ul.nav.nav-pills.pull-right
-        %li.active
-          %a{href: "#"} Home
-        %li
-          %a{href: "#"} About
-        %li
-          %a{href: "#"} Contact
+
+        - links.keys.each do |key|
+          %li{class: key == page ? 'active' : ''}
+            %a{href: links[key]}
+              = key
+        
       %h3.muted Project name

@@ -14,6 +14,6 @@ end
 # :notifications => true                send notifictions to Growl/libnotify/Notifu
 # :haml_options => { :ugly => true }    pass options to the Haml engine
 
-guard 'haml', :output => 'compiled', :input => 'source/haml', :all_on_start => true, all_after_change: true do
+guard 'haml', :output => 'compiled', :input => 'source/haml', :all_on_start => true do
   watch %r{^source/haml/.+(\.haml)}
 end

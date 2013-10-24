@@ -1,30 +1,27 @@
 - require Dir.pwd + "/source/ruby/helpers.rb"
-- links = load_data('navigation')
-= render :partial, 'partials/_header', :links => links, :page => 'homepage' 
+- links = load_data 'navigation'
+- content = load_data 'content'
 
+= render :partial, 'partials/_header', :links => links, :page => 'home' 
 
 .container
   %hr/
   .jumbotron
-    %h1 Super awesome marketing speak!
-    %p.lead Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+    %h1
+      = content["intro"]["header"]
+    %p.lead
+      = content["intro"]["body"]
     %a.btn.btn-large.btn-success{href: "#"} Sign up today
   %hr/
   .row-fluid.marketing
-    .span6
-      %h4 Subheading
-      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
-      %h4 Subheading
-      %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
-      %h4 Subheading
-      %p Maecenas sed diam eget risus varius blandit sit amet non magna.
-    .span6
-      %h4 Subheading
-      %p Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
-      %h4 Subheading
-      %p Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
-      %h4 Subheading
-      %p Maecenas sed diam eget risus varius blandit sit amet non magna.
+    - content["modules"].each do |sub|
+      .span6
+        %h4 
+          = sub["header"]
+        %p 
+          = sub["body"]
 
+  = debug content
+  = debug links
 
 = render :partial, "partials/_footer", :links => links, :page => 'homepage'
